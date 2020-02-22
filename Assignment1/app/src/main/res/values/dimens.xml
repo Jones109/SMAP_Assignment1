@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Slider_Width">200dp</dimen>
+    <dimen name="headline">24sp</dimen>
+    <dimen name="rating_small">18sp</dimen>
+    <dimen name="ratingSize">20sp</dimen>
+</resources>

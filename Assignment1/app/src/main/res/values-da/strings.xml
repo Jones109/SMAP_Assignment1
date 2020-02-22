@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Word learner</string>
+    <string name="hint_notes">Skriv noter her</string>
+    <string name="Word_Rating">Ord Bedømmelse:</string>
+    <string name="Notes">Noter:</string>
+    <string name="MyWordsHeadline">Mine ord:</string>
+    <string name="Exit">Afslut</string>
+    <string name="Edit">Rediger</string>
+    <string name="Description">Beskrivelse:</string>
+    <string name="Note_Filler_When_Empty">Ingen noter endnu</string>
+</resources>

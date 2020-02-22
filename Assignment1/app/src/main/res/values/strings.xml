@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">Assignment1</string>
+    <string name="app_name" translatable="false">Word learner</string>
     <string name="MyWordsHeadline">My words:</string>
     <string name="Edit">Edit</string>
     <string name="Exit">Exit</string>
+    <string name="Description">Description:</string>
+    <string name="Notes">Notes:</string>
+    <string name="Word_Rating">Word Rating:</string>
+    <string name="hint_notes">Write notes here</string>
+    <string name="Note_Filler_When_Empty">No notes yet</string>
 </resources>
