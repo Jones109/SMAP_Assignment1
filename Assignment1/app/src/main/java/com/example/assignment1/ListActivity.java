@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 /*
 https://developer.android.com/guide/topics/ui/layout/recyclerview
-https://www.java67.com/2015/08/how-to-load-data-from-csv-file-in-java.html
 https://www.youtube.com/watch?v=i-TqNzUryn8
 */
 
@@ -137,7 +136,6 @@ public class ListActivity extends AppCompatActivity implements MyAdapter.Listene
                 String[] tokens = line.split(";");
 
                 Word word = new Word(tokens[0], tokens[1], tokens[2], 2.5);
-                //if(i!=0)
                     wordList.add(word);
 
                 i++;
