@@ -5,7 +5,8 @@ import android.os.Parcelable;
 
 
 /*
-https://developer.android.com/reference/android/os/Parcelable
+    Followed this to be able to save the word list as parcelable
+    https://developer.android.com/reference/android/os/Parcelable
 */
 
 public class Word implements Parcelable {

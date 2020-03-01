@@ -16,16 +16,17 @@ import org.w3c.dom.Text;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    //UI
     private TextView nameText;
     private TextView pronounciationText;
     private TextView descriptionText;
     private TextView noteText;
     private ImageView imageView;
     private TextView ratingText;
-
     private Button cancelButton;
     private Button editButton;
 
+    //Consts
     public static final int REQUEST_CODE_EDITACTIVITY= 102;
 
     @Override
@@ -33,6 +34,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        //Get values from intent
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String pronounciation = intent.getStringExtra("pronounciation");
@@ -40,6 +42,7 @@ public class DetailsActivity extends AppCompatActivity {
         String notes = intent.getStringExtra("notes");
         double rating = intent.getDoubleExtra("rating", 2.5);
 
+        //Find UI views
         nameText = findViewById(R.id.text_details_name);
         pronounciationText = findViewById(R.id.text_details_pronounciation);
         descriptionText = findViewById(R.id.text_details_desciption);
@@ -47,6 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
         ratingText = findViewById(R.id.text_details_rating);
         imageView = findViewById(R.id.image_details_animal);
 
+        //Set value of views
         nameText.setText(name);
         pronounciationText.setText(pronounciation);
         descriptionText.setText(description);
@@ -55,6 +59,7 @@ public class DetailsActivity extends AppCompatActivity {
         imageView.setImageResource(ResourceHelper.getDrawableFromName(name));
         ratingText.setText(rating+"");
 
+        //Setup buttons
         cancelButton = findViewById(R.id.button_details_cancel);
         editButton = findViewById(R.id.button_details_edit);
 
@@ -76,10 +81,9 @@ public class DetailsActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_EDITACTIVITY);
             }
         });
-
-
     }
 
+    //Receives result after editing
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

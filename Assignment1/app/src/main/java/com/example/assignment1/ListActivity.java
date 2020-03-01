@@ -22,18 +22,25 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 /*
+Followed this to learn to set up recycler view
 https://developer.android.com/guide/topics/ui/layout/recyclerview
+
+Followed this to read from csv file
 https://www.youtube.com/watch?v=i-TqNzUryn8
 */
 
-public class ListActivity extends AppCompatActivity implements MyAdapter.Listener {
+public class ListActivity extends AppCompatActivity implements Listener {
 
+    //UI
     private Button exitButton;
     private RecyclerView recyclerView;
     private MyAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    //Data
     private ArrayList<Word> mWords;
 
+    //Consts
     private final static String KEY_WORDS = "words";
     public static final int REQUEST_CODE_DETAILSACTIVITY = 101;
 
@@ -42,37 +49,35 @@ public class ListActivity extends AppCompatActivity implements MyAdapter.Listene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        //Read from saved instance
         if(savedInstanceState!=null){
             mWords = savedInstanceState.getParcelableArrayList(KEY_WORDS);
         }
 
+        //Make sure word list is initialized
         if(mWords == null){
             mWords = readWordData();
         }
 
+        //Setup button
         exitButton = findViewById(R.id.button_list_exit);
-
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.exit(0);
             }
         });
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
+        //Setup recyclerview
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
         mAdapter = new MyAdapter(mWords, this);
-
         recyclerView.setAdapter(mAdapter);
     }
 
+    //This method is called when an item in the recyclerview is called
     @Override
     public void onClick(int position) {
         Intent intent = new Intent(ListActivity.this, DetailsActivity.class);
@@ -85,10 +90,10 @@ public class ListActivity extends AppCompatActivity implements MyAdapter.Listene
         startActivityForResult(intent, REQUEST_CODE_DETAILSACTIVITY);
     }
 
+    //Receives result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         switch(requestCode){
             case REQUEST_CODE_DETAILSACTIVITY:
                 if(resultCode == RESULT_OK){
@@ -112,14 +117,14 @@ public class ListActivity extends AppCompatActivity implements MyAdapter.Listene
         }
     }
 
+    //Save list of words in the saved instance
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        //save the state
-
         outState.putParcelableArrayList(KEY_WORDS, mWords);
         super.onSaveInstanceState(outState);
     }
 
+    //Method to read the CSV file
     private ArrayList<Word> readWordData(){
         ArrayList<Word> wordList = new ArrayList<Word>();
 
@@ -131,14 +136,11 @@ public class ListActivity extends AppCompatActivity implements MyAdapter.Listene
         String line = "";
 
         try{
-            int i = 0;
             while((line = reader.readLine()) != null){
                 String[] tokens = line.split(";");
 
                 Word word = new Word(tokens[0], tokens[1], tokens[2], 2.5);
                     wordList.add(word);
-
-                i++;
             }
         } catch (IOException e) {
             Log.e("ListActivity", "Error reading csv file");

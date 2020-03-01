@@ -2,6 +2,7 @@ package com.example.assignment1;
 
 public class ResourceHelper {
 
+    //Helper method to get the right resource
     public static int getDrawableFromName(String name) {
 
         switch (name.toLowerCase()) {
@@ -34,8 +35,9 @@ public class ResourceHelper {
             case "snake":
                 return R.drawable.snake;
             default:
-                //Hack
-                if (name.contains("ion"))
+                //Something is wrong when reading the first line from the csv file
+                //This is a hack to fix it
+                if (name.contains("Lion"))
                     return R.drawable.lion;
 
                 return 0;
